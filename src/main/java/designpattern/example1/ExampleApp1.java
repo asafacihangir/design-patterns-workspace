@@ -1,4 +1,4 @@
-package designpatterm.example1;
+package designpattern.example1;
 
 public class ExampleApp1 {
     public static void main(String[] args) {
