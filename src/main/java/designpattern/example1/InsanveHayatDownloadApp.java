@@ -11,12 +11,12 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ExampleApp1 {
+public class InsanveHayatDownloadApp {
 
   public static void main(String[] args) throws IOException {
 
 
-    final int dergiNo = 29;
+    final int dergiNo = 131;
     final String uniCode = "dde001309fddb41eaf07258a16ed3955";
 
     FileOutputStream fos = new FileOutputStream(dergiNo + "_insan_ve_hayat.zip");
@@ -28,7 +28,7 @@ public class ExampleApp1 {
         pageNum = "0" + i;
       }
 
-      final String downloadUrl = createDownloadUrl(dergiNo, uniCode, pageNum);
+      final String downloadUrl = createDownloadUrl(DergiType.INSAN_VE_HAYAT, dergiNo, uniCode, pageNum);
 
       System.out.println(downloadUrl);
       HttpRequest request = HttpRequest.newBuilder()
@@ -68,14 +68,15 @@ public class ExampleApp1 {
   }
 
 
-  public static String createDownloadUrl(int dergiNo, String uniCode, String pageNum) {
-    final String mainUrl = "https://www.edergim.com/public_x/dergi/insan-ve-hayat-dergisi/";
+  public static String createDownloadUrl(DergiType dergiType, int dergiNo, String uniCode, String pageNum) {
+    final String mainUrl = "https://www.edergim.com/public_x/dergi/" +dergiType.getName() +"/";
     final String directoryUrl = "/files/assets/common/downloads/page00";
     final String extension = ".pdf?uni=";
 
     return mainUrl + dergiNo + directoryUrl + pageNum + extension + uniCode;
 
   }
+
 
 
 }
